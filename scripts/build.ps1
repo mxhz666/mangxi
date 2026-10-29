@@ -80,15 +80,40 @@ if (Test-Path $assets) {
 $rebuilt = @()
 foreach ($w in $works) {
   $cover = [string]$w.cover
-  if (-not $cover -and $w.src -match '^assets/' -and $ffmpeg) {
-    $fullPath = Join-Path $root ($w.src -replace '/', '\')
-    if (Test-Path $fullPath) {
+  $ratio = [string]$w.ratio
+  $fullPath = $null
+  if ($w.src -match '^assets/') { $fullPath = Join-Path $root ($w.src -replace '/', '\') }
+  if ($fullPath -and (Test-Path $fullPath)) {
+    # prefer a user-provided same-named image as the cover
+    if (-not $cover) {
+      $dirFull = [System.IO.Path]::GetDirectoryName($fullPath)
+      $baseName = [System.IO.Path]::GetFileNameWithoutExtension($fullPath)
+      foreach ($ce in @('.jpg','.jpeg','.png','.webp')) {
+        if (Test-Path (Join-Path $dirFull ($baseName + $ce))) {
+          $cover = ($w.src -replace '\.[^.]+$', $ce)
+          break
+        }
+      }
+    }
+    # else auto-generate the first frame with ffmpeg
+    if (-not $cover -and $ffmpeg) {
       try {
         $coverFile = [System.IO.Path]::ChangeExtension($fullPath, '.jpg')
         if (-not (Test-Path $coverFile)) {
           & $ffmpeg -y -ss 1 -i $fullPath -frames:v 1 -q:v 3 -loglevel quiet $coverFile 2>$null
         }
         if (Test-Path $coverFile) { $cover = ($w.src -replace '\.[^.]+$', '.jpg') }
+      } catch { }
+    }
+    if (-not $ratio -and $ffmpeg) {
+      try {
+        $probe = (& $ffmpeg -hide_banner -i $fullPath 2>&1 | Out-String)
+        $mm = [regex]::Match($probe, '(\d{2,5})x(\d{2,5})')
+        if ($mm.Success) {
+          $wd = [int]$mm.Groups[1].Value
+          $ht = [int]$mm.Groups[2].Value
+          if ($wd -gt 0 -and $ht -gt 0) { if ($wd -lt $ht) { $ratio = '3/4' } else { $ratio = '4/3' } }
+        }
       } catch { }
     }
   }
@@ -98,6 +123,7 @@ foreach ($w in $works) {
     src   = [string]$w.src
     meta  = [string]$w.meta
     cover = $cover
+    ratio = $ratio
   }
 }
 $works = $rebuilt
@@ -125,8 +151,9 @@ foreach ($w in $works) {
   $s = Esc $w.src
   $m = Esc $w.meta
   $cv = Esc $w.cover
-  $jsonItems += "  { `"title`": `"$t`", `"cat`": `"$c`", `"src`": `"$s`", `"meta`": `"$m`", `"cover`": `"$cv`" }"
-  $jsItems   += "  { `"title`": `"$t`", `"cat`": `"$c`", `"src`": `"$s`", `"meta`": `"$m`", `"cover`": `"$cv`" }"
+  $rt = Esc $w.ratio
+  $jsonItems += "  { `"title`": `"$t`", `"cat`": `"$c`", `"src`": `"$s`", `"meta`": `"$m`", `"cover`": `"$cv`", `"ratio`": `"$rt`" }"
+  $jsItems   += "  { `"title`": `"$t`", `"cat`": `"$c`", `"src`": `"$s`", `"meta`": `"$m`", `"cover`": `"$cv`", `"ratio`": `"$rt`" }"
 }
 
 $jsonContent = "[" + "`r`n" + ($jsonItems -join ",`r`n") + "`r`n]" + "`r`n"

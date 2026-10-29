@@ -4,12 +4,33 @@ cd /d "%~dp0"
 
 if ""=="%~1" goto :publish
 
-call :copyfile "%~1"
-goto :publish
+REM ---- collect dragged files: first video + first image ----
+set "VIDEO="
+set "IMAGE="
 
-:copyfile
+:findargs
+if "%~1"=="" goto :argsdone
+if not defined VIDEO (
+  for %%e in (mp4 mov webm m4v mkv avi) do if /i "%~x1"==".%%e" set "VIDEO=%~1"
+)
+if not defined IMAGE (
+  for %%e in (jpg jpeg png webp) do if /i "%~x1"==".%%e" set "IMAGE=%~1"
+)
+shift
+goto :findargs
+
+:argsdone
+if not defined VIDEO (
+  echo.
+  echo No video found.
+  echo Drag a video onto this .bat (and drag the cover image together with it).
+  pause
+  exit /b 1
+)
+
 echo.
-echo Dragged file: %~1
+echo Video: %VIDEO%
+if defined IMAGE (echo Cover: %IMAGE%) else (echo Cover: auto first frame)
 echo.
 echo Choose the category:
 echo   1 = apparel     (fashion)
@@ -25,19 +46,26 @@ if "%CATNUM%"=="1" set "CAT=apparel"
 if "%CATNUM%"=="3" set "CAT=chinese"
 if "%CATNUM%"=="4" set "CAT=american"
 if "%CATNUM%"=="5" set "CAT=ecommerce"
+
 if not exist "assets\%CAT%" mkdir "assets\%CAT%"
-copy /y "%~1" "assets\%CAT%\" >nul
+
+for %%f in ("%VIDEO%") do set "VBASE=%%~nf"
+copy /y "%VIDEO%" "assets\%CAT%\" >nul
 if errorlevel 1 (
-  echo [ERROR] Copy failed.
+  echo [ERROR] Copy video failed.
   pause
   exit /b 1
 )
-echo Copied into assets\%CAT%\
-goto :eof
+echo Copied video into assets\%CAT%\
+
+if defined IMAGE (
+  for %%f in ("%IMAGE%") do set "IEXT=%%~xf"
+  copy /y "%IMAGE%" "assets\%CAT%\%VBASE%%IEXT%" >nul
+  echo Copied cover into assets\%CAT%\%VBASE%%IEXT%
+)
+goto :publish
 
 :publish
-echo.
-echo If you double-clicked (no file), everything already in assets will be published.
 echo.
 echo Building + publishing ...
 powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\build.ps1"

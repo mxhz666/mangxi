@@ -20,7 +20,7 @@
         : `<img src="${w.src}" alt="${w.title}" loading="lazy" />`;
       return `
       <a class="work" href="${w.src}" target="_blank" rel="noopener" data-category="${w.cat}" data-src="${w.src}" data-reveal="up" data-i="${i}">
-        <div class="work-media" data-i="${i}">
+        <div class="work-media" data-i="${i}" style="aspect-ratio:${w.ratio || '16/11'}">
           ${media}
           <span class="work-watch">观看 ↗</span>
         </div>
