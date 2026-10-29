@@ -9,6 +9,7 @@ for /d %%d in ("assets\brand\*tmpdir") do (echo   removing %%d & rd /s /q "%%d")
 for /d %%d in ("assets\chinese\*tmpdir") do (echo   removing %%d & rd /s /q "%%d")
 for /d %%d in ("assets\american\*tmpdir") do (echo   removing %%d & rd /s /q "%%d")
 for /d %%d in ("assets\ecommerce\*tmpdir") do (echo   removing %%d & rd /s /q "%%d")
+for /d %%d in ("scripts\*tmpdir") do (echo   removing %%d & rd /s /q "%%d")
 echo.
 echo Done. Now double-click publish.bat to commit + push the cleanup.
 echo.

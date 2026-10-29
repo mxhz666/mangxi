@@ -16,7 +16,9 @@
     const isVideo = (src) => /\.(mp4|webm|mov|m4v)$/i.test(src);
     grid.innerHTML = WORKS.map((w, i) => {
       const media = isVideo(w.src)
-        ? `<video muted loop playsinline autoplay preload="auto"${w.cover ? ` poster="${w.cover}"` : ''}><source src="${w.src}" type="video/mp4" /></video>`
+        ? (w.cover
+            ? `<img class="work-cover" src="${w.cover}" alt="${w.title}" loading="lazy" /><video class="work-video" muted loop playsinline preload="none"><source src="${w.src}" type="video/mp4" /></video>`
+            : `<video class="work-video" muted loop playsinline autoplay preload="auto"><source src="${w.src}" type="video/mp4" /></video>`)
         : `<img src="${w.src}" alt="${w.title}" loading="lazy" />`;
       return `
       <a class="work" href="${w.src}" target="_blank" rel="noopener" data-category="${w.cat}" data-src="${w.src}" data-reveal="up" data-i="${i}">
