@@ -26,7 +26,7 @@
         </div>
         <div class="work-info">
           <h3 class="work-title">${w.title}</h3>
-          <p class="work-meta">${w.meta}</p>
+          ${w.meta ? `<p class="work-meta">${w.meta}</p>` : ''}
         </div>
       </a>
     `;
