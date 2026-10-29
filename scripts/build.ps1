@@ -180,6 +180,7 @@ if (Test-Path $indexPath) {
   $idx = Get-Content $indexPath -Raw -Encoding UTF8
   $ver = (Get-Date -Format 'yyyyMMddHHmmss')
   $new = $idx -replace 'js/works\.js(\?v=[0-9]+)?', ('js/works.js?v=' + $ver)
+  $new = $new -replace 'css/styles\.css(\?v=[0-9]+)?', ('css/styles.css?v=' + $ver)
   if ($new -ne $idx) { [System.IO.File]::WriteAllText($indexPath, $new, $utf8) }
 }
 

@@ -472,8 +472,8 @@ img, video { display: block; max-width: 100%; }
 
 .works-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2.4rem;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.6rem;
 }
 .work { display: block; transition: transform 0.4s var(--ease); }
 .work:hover { transform: translateY(-6px); }
@@ -627,8 +627,11 @@ img, video { display: block; max-width: 100%; }
 /* ==========================================================================
    响应式
    ========================================================================== */
+@media (max-width: 1200px) {
+  .works-grid { grid-template-columns: repeat(3, 1fr); }
+}
 @media (max-width: 900px) {
-  .works-grid { grid-template-columns: 1fr; }
+  .works-grid { grid-template-columns: repeat(2, 1fr); }
   .services-grid { grid-template-columns: 1fr 1fr; }
   .about-grid { grid-template-columns: 1fr; gap: 2rem; }
   .nav-links { display: none; }
@@ -637,5 +640,6 @@ img, video { display: block; max-width: 100%; }
   .hero-media-inner { aspect-ratio: 16 / 10; }
 }
 @media (max-width: 520px) {
+  .works-grid { grid-template-columns: 1fr; }
   .services-grid { grid-template-columns: 1fr; }
 }
