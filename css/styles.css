@@ -576,6 +576,17 @@ img, video { display: block; max-width: 100%; }
   gap: 1rem;
 }
 .footer-slogan { letter-spacing: 0.06em; }
+.admin-entry {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0;
+  letter-spacing: 0.04em;
+  font-family: var(--font-sans);
+}
+.admin-entry:hover { color: var(--ink); }
 
 /* ==========================================================================
    响应式
