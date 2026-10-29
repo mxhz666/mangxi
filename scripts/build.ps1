@@ -124,6 +124,7 @@ foreach ($w in $works) {
         }
       } catch { }
     }
+    if (-not $ratio) { $ratio = '3/4' }   # fallback: these works are portrait by default
   }
   $rebuilt += [pscustomobject]@{
     title = [string]$w.title
