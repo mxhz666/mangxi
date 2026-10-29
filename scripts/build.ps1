@@ -34,6 +34,16 @@ if (Test-Path $catPath) {
   foreach ($p in $map.PSObject.Properties) { $catLookup[[string]$p.Name] = [string]$p.Value }
 }
 
+# 2.5) find ffmpeg (for auto cover extraction)
+$ffmpeg = $null
+foreach ($cand in @('C:\Program Files\Red Giant\Trapcode Suite\Tools\ffmpeg.exe')) {
+  if (-not $ffmpeg -and (Test-Path $cand)) { $ffmpeg = $cand }
+}
+if (-not $ffmpeg) {
+  $cmd = Get-Command ffmpeg -ErrorAction SilentlyContinue
+  if ($cmd) { $ffmpeg = $cmd.Source }
+}
+
 # 3) scan assets/ recursively for videos, auto-add the ones not referenced yet
 $exts = @('.mp4','.mov','.webm','.m4v','.mkv','.avi')
 $year = (Get-Date).Year
@@ -66,6 +76,32 @@ if (Test-Path $assets) {
     }
 }
 
+# 3.5) auto-generate covers (first frame) for every entry whose video exists
+$rebuilt = @()
+foreach ($w in $works) {
+  $cover = [string]$w.cover
+  if (-not $cover -and $w.src -match '^assets/' -and $ffmpeg) {
+    $fullPath = Join-Path $root ($w.src -replace '/', '\')
+    if (Test-Path $fullPath) {
+      try {
+        $coverFile = [System.IO.Path]::ChangeExtension($fullPath, '.jpg')
+        if (-not (Test-Path $coverFile)) {
+          & $ffmpeg -y -ss 1 -i $fullPath -frames:v 1 -q:v 3 -loglevel quiet $coverFile 2>$null
+        }
+        if (Test-Path $coverFile) { $cover = ($w.src -replace '\.[^.]+$', '.jpg') }
+      } catch { }
+    }
+  }
+  $rebuilt += [pscustomobject]@{
+    title = [string]$w.title
+    cat   = [string]$w.cat
+    src   = [string]$w.src
+    meta  = [string]$w.meta
+    cover = $cover
+  }
+}
+$works = $rebuilt
+
 # warn about entries whose asset file is missing
 foreach ($w in $works) {
   if ($w.src -match '^assets/') {
@@ -88,8 +124,9 @@ foreach ($w in $works) {
   $c = Esc $w.cat
   $s = Esc $w.src
   $m = Esc $w.meta
-  $jsonItems += "  { `"title`": `"$t`", `"cat`": `"$c`", `"src`": `"$s`", `"meta`": `"$m`" }"
-  $jsItems   += "  { `"title`": `"$t`", `"cat`": `"$c`", `"src`": `"$s`", `"meta`": `"$m`" }"
+  $cv = Esc $w.cover
+  $jsonItems += "  { `"title`": `"$t`", `"cat`": `"$c`", `"src`": `"$s`", `"meta`": `"$m`", `"cover`": `"$cv`" }"
+  $jsItems   += "  { `"title`": `"$t`", `"cat`": `"$c`", `"src`": `"$s`", `"meta`": `"$m`", `"cover`": `"$cv`" }"
 }
 
 $jsonContent = "[" + "`r`n" + ($jsonItems -join ",`r`n") + "`r`n]" + "`r`n"
