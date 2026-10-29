@@ -469,6 +469,28 @@ img, video { display: block; max-width: 100%; }
   color: var(--bg);
   border-color: var(--ink);
 }
+/* 电商短片 = 不同维度（形式），做视觉区分：分隔线 + 虚线金边 */
+.filter-format {
+  margin-left: 0.9rem;
+  position: relative;
+  border-style: dashed;
+  border-color: var(--gold);
+}
+.filter-format::before {
+  content: "";
+  position: absolute;
+  left: -0.9rem;
+  top: 50%;
+  width: 1px;
+  height: 14px;
+  background: var(--line);
+  transform: translateY(-50%);
+}
+.filter-format.active {
+  background: var(--gold);
+  color: var(--ink);
+  border-color: var(--gold);
+}
 
 .works-grid {
   display: grid;
