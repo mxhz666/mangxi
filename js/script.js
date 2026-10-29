@@ -20,8 +20,10 @@
             ? `<img class="work-cover" src="${w.cover}" alt="${w.title}" loading="lazy" /><video class="work-video" muted loop playsinline preload="none"><source src="${w.src}" type="video/mp4" /></video>`
             : `<video class="work-video" muted loop playsinline autoplay preload="auto"><source src="${w.src}" type="video/mp4" /></video>`)
         : `<img src="${w.src}" alt="${w.title}" loading="lazy" />`;
+      const rp = (w.ratio || '').split('/');
+      const wide = rp.length === 2 && (+rp[0]) > (+rp[1]);
       return `
-      <a class="work" href="${w.src}" target="_blank" rel="noopener" data-category="${w.cat}" data-src="${w.src}" data-reveal="up" data-i="${i}">
+      <a class="work${wide ? ' work-wide' : ''}" href="${w.src}" target="_blank" rel="noopener" data-category="${w.cat}" data-src="${w.src}" data-reveal="up" data-i="${i}">
         <div class="work-media" data-i="${i}" style="aspect-ratio:${w.ratio || '16/11'}">
           ${media}
           <span class="work-watch">观看 ↗</span>

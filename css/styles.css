@@ -498,9 +498,13 @@ img, video { display: block; max-width: 100%; }
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 1.6rem;
+  grid-auto-flow: dense;
 }
 .work { display: block; transition: transform 0.4s var(--ease); }
 .work:hover { transform: translateY(-6px); }
+/* 横屏作品（宽卡）：占两列，与竖卡组成 "3竖 + 1宽" 的一行 */
+.work.work-wide { grid-column: span 2; }
+.work.work-wide .work-media { aspect-ratio: 3 / 2; }
 .work-media {
   position: relative;
   aspect-ratio: 16 / 11;
