@@ -15,11 +15,16 @@ $outJs    = Join-Path $root 'js\works.js'
 $catPath  = Join-Path $root 'categories.json'
 
 # 1) read existing works.json
+#    PS 5.1 quirk: ConvertFrom-Json '[]' may return $null. Guard it, then drop empty entries.
 $works = @()
 if (Test-Path $jsonPath) {
   $raw = Get-Content $jsonPath -Raw -Encoding UTF8
-  if ($raw -and $raw.Trim()) { $works = @(ConvertFrom-Json $raw) }
+  if ($raw -and $raw.Trim()) {
+    $tmp = ConvertFrom-Json $raw
+    if ($null -ne $tmp) { $works = @($tmp) }
+  }
 }
+$works = @($works | Where-Object { $_ -and $_.src -and ([string]$_.src).Trim() -ne '' })
 
 # 2) category lookup: folder name -> category key
 $catLookup = @{}
