@@ -2,11 +2,10 @@
 setlocal
 cd /d "%~dp0"
 
-if ""=="%~1" goto :publish
-
-REM ---- collect dragged files: first video + first image ----
 set "VIDEO="
 set "IMAGE="
+
+if "%~1"=="" goto :interactive
 
 :findargs
 if "%~1"=="" goto :argsdone
@@ -19,18 +18,38 @@ if not defined IMAGE (
 shift
 goto :findargs
 
-:argsdone
-if not defined VIDEO (
-  echo.
-  echo No video found.
-  echo Drag a video onto this .bat (and drag the cover image together with it).
-  pause
-  exit /b 1
-)
+:interactive
+echo.
+echo ============================================
+echo   No file was dragged onto this .bat.
+echo ============================================
+echo TIP: drag the video file and drop it HERE
+echo      into this black window (it fills in
+echo      the path), or paste the full path,
+echo      then press Enter.
+echo ============================================
+set /p VPATH=Video file path: 
+if not defined VPATH goto :nofile
+set "VPATH=%VPATH:"=%"
+if "%VPATH%"=="" goto :nofile
+set "VIDEO=%VPATH%"
+goto :argsdone
 
+:argsdone
+if not defined VIDEO goto :nofile
+if not exist "%VIDEO%" goto :nofile
+goto :gotvideo
+
+:nofile
+echo.
+echo No valid video found.
+pause
+exit /b 1
+
+:gotvideo
 echo.
 echo Video: %VIDEO%
-if defined IMAGE (echo Cover: %IMAGE%) else (echo Cover: auto first frame)
+if defined IMAGE (echo Cover: %IMAGE%) else (echo Cover: automatic first frame)
 echo.
 echo Choose the category:
 echo   1 = apparel     (fashion)
@@ -82,7 +101,6 @@ if not defined GIT if exist "%ProgramFiles(x86)%\Git\cmd\git.exe" set "GIT=%Prog
 if not defined GIT if exist "%LocalAppData%\Programs\Git\cmd\git.exe" set "GIT=%LocalAppData%\Programs\Git\cmd\git.exe"
 if not defined GIT if exist "%USERPROFILE%\.workbuddy\binaries\PortableGit\versions\1.2.0\cmd\git.exe" set "GIT=%USERPROFILE%\.workbuddy\binaries\PortableGit\versions\1.2.0\cmd\git.exe"
 if not defined GIT (
-  echo.
   echo [Git not found] Please install Git: https://git-scm.com/download/win
   pause
   exit /b 1
@@ -90,7 +108,6 @@ if not defined GIT (
 
 "%GIT%" remote get-url origin >nul 2>nul
 if errorlevel 1 (
-  echo.
   echo Not connected to GitHub yet. Run the CONNECT script first.
   pause
   exit /b 0
@@ -100,10 +117,8 @@ if errorlevel 1 (
 "%GIT%" -c core.quotepath=false commit -m "upload works"
 "%GIT%" push
 if errorlevel 1 (
-  echo.
   echo Push failed. See messages above.
 ) else (
-  echo.
   echo Publish OK! Wait 1-2 minutes, then refresh your website.
 )
 echo.
