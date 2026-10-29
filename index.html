@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MANGXI Studio — AIGC Film · Every Frame Sells</title>
+  <meta name="description" content="MANGXI Studio — an AIGC film studio crafting high-quality TVC commercials and e-commerce ads, frame by frame. Every frame sells." />
+
+  <!-- 字体：英文几何无衬线 Space Grotesk + 细衬线 Instrument Serif + 中文思源黑体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- 预加载层：动态 logo（黑底 → 金线画框 → 双果浮现 → 名字淡入）+ 百分比计数 -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-inner">
+      <svg class="logo-anim" viewBox="0 0 120 120" aria-hidden="true">
+        <rect class="logo-frame" x="8" y="8" width="104" height="104" rx="24" fill="none" stroke="#F2B84B" stroke-width="5" stroke-linecap="round" />
+        <circle class="logo-gold" cx="50" cy="60" r="27" fill="#F2B84B" />
+        <path class="logo-red" d="M66 33 A27 27 0 0 1 66 87 Z" fill="#D94A4A" />
+      </svg>
+      <span class="preloader-name">芒西绘帧</span>
+    </div>
+    <div class="preloader-count" id="preloaderCount">0%</div>
+  </div>
+
+  <!-- 滚动进度条 -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- 自定义光标（桌面端） -->
+  <div class="cursor" id="cursor" aria-hidden="true"><span class="cursor-label">查看 ↗</span></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+  <!-- 顶部导航 -->
+  <header class="site-header" id="header">
+    <nav class="nav container">
+      <a href="#top" class="brand" data-cursor>
+        <svg class="brand-logo" viewBox="0 0 120 120" aria-hidden="true">
+          <rect x="8" y="8" width="104" height="104" rx="24" fill="none" stroke="currentColor" stroke-width="6" />
+          <circle cx="50" cy="60" r="27" fill="#F2B84B" />
+          <path d="M66 33 A27 27 0 0 1 66 87 Z" fill="#D94A4A" />
+        </svg>
+        芒西绘帧
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about" data-cursor>关于</a></li>
+        <li><a href="#works" data-cursor>作品</a></li>
+        <li><a href="#services" data-cursor>服务</a></li>
+        <li><a href="#contact" data-cursor>联系</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta btn btn-small" data-cursor>合作 <span class="arrow">↗</span></a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+      <div class="container hero-top">
+        <p class="hero-eyebrow" data-reveal="up">AIGC FILM STUDIO — PORTFOLIO 2024</p>
+        <h1 class="hero-title">
+          <span data-reveal="chars">芒西绘帧</span>
+        </h1>
+        <p class="hero-slogan" data-reveal="up">帧帧，皆是卖点<span class="slogan-dot">。</span></p>
+        <div class="hero-row">
+          <p class="hero-role" data-reveal="up">专注品牌与产品的高质感 <em class="serif">TVC</em> 宣传片 · 电商广告</p>
+          <p class="hero-desc" data-reveal="up">品牌 TVC / 时尚服饰 / 复古美式 / 国风新中式 / 电商创意短片</p>
+        </div>
+        <div class="hero-actions" data-reveal="up">
+          <a href="#works" class="btn" data-cursor>查看作品 <span class="arrow">↓</span></a>
+          <a href="#contact" class="btn btn-ghost" data-cursor>联系我</a>
+        </div>
+      </div>
+
+      <!-- 主推片（占位图，后续换真实视频） -->
+      <div class="hero-media" data-reveal="clip">
+        <div class="hero-media-inner">
+          <img src="assets/hero-showreel.svg" alt="Showreel" />
+        </div>
+        <span class="hero-media-tag" data-reveal="up">SHOWREEL — 2024</span>
+      </div>
+    </section>
+
+    <!-- ===== 跑马灯 ===== -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>品牌 TVC</span><i>✳</i>
+        <span>时尚服饰</span><i>✳</i>
+        <span>复古美式</span><i>✳</i>
+        <span>国风新中式</span><i>✳</i>
+        <span>电商创意短片</span><i>✳</i>
+        <span>帧帧，皆是卖点</span><i>✳</i>
+        <span>品牌 TVC</span><i>✳</i>
+        <span>时尚服饰</span><i>✳</i>
+        <span>复古美式</span><i>✳</i>
+        <span>国风新中式</span><i>✳</i>
+        <span>电商创意短片</span><i>✳</i>
+        <span>帧帧，皆是卖点</span><i>✳</i>
+      </div>
+    </div>
+
+    <!-- ===== 关于 ===== -->
+    <section class="section about" id="about">
+      <div class="container about-grid">
+        <div class="about-head">
+          <p class="kicker" data-reveal="up">01 — ABOUT</p>
+          <h2 class="section-title" data-reveal="chars">一帧一帧<br />绘出来</h2>
+        </div>
+        <div class="about-body">
+          <p class="lead" data-reveal="up">
+            我们是一家 <em class="serif">AIGC 影像工作室</em>，专注为品牌与产品打造高质量 TVC 宣传片与电商广告。
+          </p>
+          <p data-reveal="up">
+            用生成式 AI 逐帧绘制，把每一处高光、每一丝质感、每一秒情绪，都打磨到可交付商业片的水准。
+          </p>
+          <p data-reveal="up">
+            不堆特效，专注于值得被看见的细节。因为好的广告，从来不是「做」出来的，是一帧一帧「绘」出来的。
+          </p>
+          <div class="stats" data-reveal="up">
+            <div class="stat"><span class="stat-num" data-count="120">0</span><span class="stat-label">交付影片</span></div>
+            <div class="stat"><span class="stat-num" data-count="60">0</span><span class="stat-label">服务品牌</span></div>
+            <div class="stat"><span class="stat-num" data-count="5">0</span><span class="stat-label">风格方向</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 作品 ===== -->
+    <section class="section works" id="works">
+      <div class="container">
+        <div class="works-head">
+          <p class="kicker" data-reveal="up">02 — SELECTED WORKS</p>
+          <h2 class="section-title" data-reveal="chars">精选作品</h2>
+        </div>
+
+        <!-- 分类筛选 -->
+        <div class="filters" data-reveal="up">
+          <button class="filter active" data-filter="all">全部</button>
+          <button class="filter" data-filter="brand">品牌 TVC</button>
+          <button class="filter" data-filter="apparel">时尚服饰</button>
+          <button class="filter" data-filter="american">复古美式</button>
+          <button class="filter" data-filter="chinese">国风新中式</button>
+          <button class="filter" data-filter="ecommerce">电商创意短片</button>
+        </div>
+
+        <!-- 作品网格：由 js/works.js 自动生成，作品都在那里管理 -->
+        <div class="works-grid" id="worksGrid"></div>
+      </div>
+    </section>
+
+    <!-- ===== 服务 ===== -->
+    <section class="section services" id="services">
+      <div class="container">
+        <div class="works-head">
+          <p class="kicker" data-reveal="up">03 — SERVICES</p>
+          <h2 class="section-title" data-reveal="chars">我们能做什么</h2>
+        </div>
+        <div class="services-grid">
+          <div class="service" data-reveal="up">
+            <span class="service-num">01</span>
+            <h3>品牌 TVC</h3>
+            <p>从品牌调性出发，打造一支让人记住的电影级品牌宣传片。</p>
+          </div>
+          <div class="service" data-reveal="up">
+            <span class="service-num">02</span>
+            <h3>时尚服饰</h3>
+            <p>为服饰品牌打造有高级感、能出圈的时尚大片。</p>
+          </div>
+          <div class="service" data-reveal="up">
+            <span class="service-num">03</span>
+            <h3>复古美式</h3>
+            <p>复古老派的街头质感，驾驭纯正美式潮流风格。</p>
+          </div>
+          <div class="service" data-reveal="up">
+            <span class="service-num">04</span>
+            <h3>国风新中式</h3>
+            <p>东方美学与现代感的融合，呈现国风新中式大片。</p>
+          </div>
+          <div class="service" data-reveal="up">
+            <span class="service-num">05</span>
+            <h3>电商创意短片</h3>
+            <p>为信息流与直播间批量产出高转化的创意短视频。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 联系 ===== -->
+    <section class="section contact" id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <p class="kicker" data-reveal="up">04 — CONTACT</p>
+          <h2 class="section-title" data-reveal="chars">一起做点<br />好片子</h2>
+          <p class="contact-sub" data-reveal="up">有品牌、有产品、有想法？告诉我，24 小时内回复你一个创意方向。</p>
+          <div class="contact-links" data-reveal="up">
+            <a href="mailto:hello@yourname.example" class="btn" data-cursor>发邮件 <span class="arrow">↗</span></a>
+          </div>
+          <div class="contact-meta" data-reveal="up">
+            <span>微信：zzq7896557</span>
+            <span>抖音：@芒果配西瓜</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© 2024 芒西绘帧工作室</span>
+      <span class="footer-slogan">芒西绘帧 —— 帧帧，皆是卖点。</span>
+    </div>
+  </footer>
+
+  <!-- 平滑滚动（Lenis，加载失败时自动回退到原生滚动） -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="js/works.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
