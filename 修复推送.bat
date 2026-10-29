@@ -16,19 +16,40 @@ if not defined GIT (
 )
 
 echo.
-echo [1/2] Applying network-friendly git settings ...
+echo [1/2] Clearing git proxy override, using system network ...
+"%GIT%" config --global --unset http.proxy 2>nul
+"%GIT%" config --global --unset https.proxy 2>nul
 "%GIT%" config --global http.version HTTP/1.1
 "%GIT%" config --global http.postBuffer 524288000
 echo    done.
 echo.
-echo [2/2] Pushing ... (log -> push-log.txt)
+echo [2/2] Pushing (retry up to 5 times) ...
+set /a tries=0
+:retry
+set /a tries+=1
+echo    attempt %tries% ...
 "%GIT%" push > "%~dp0push-log.txt" 2>&1
-set "RC=%errorlevel%"
+if not errorlevel 1 goto success
+if %tries% lss 5 (
+  timeout /t 5 /nobreak >nul
+  goto retry
+)
 echo.
 echo ============================================
-echo   push exit code: %RC%   (0 = OK, other = failed)
+echo   PUSH STILL FAILED after 5 attempts
+echo ============================================
+echo See push-log.txt. Make sure your proxy tool
+echo (the one on port 50892) is running and set
+echo to GLOBAL / TUN mode, then run this again.
+echo ============================================
+pause
+exit /b 1
+
+:success
+echo.
+echo ============================================
+echo   Publish OK!  (pushed successfully)
 echo ============================================
 echo Log: %~dp0push-log.txt
-echo Tell the AI you ran this, then it will read push-log.txt
 echo.
 pause

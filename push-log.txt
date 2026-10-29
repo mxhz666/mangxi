@@ -1,1 +1,1 @@
-fatal: unable to access 'https://github.com/mxhz666/mangxi.git/': Failed to connect to github.com:443 after 21108 ms: Could not connect to server
+fatal: unable to access 'https://github.com/mxhz666/mangxi.git/': Failed to connect to github.com:443 after 21070 ms: Could not connect to server
