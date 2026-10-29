@@ -213,6 +213,12 @@
     </div>
   </footer>
 
+  <!-- 视频灯箱：点击作品时弹出大屏播放 -->
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="关闭">×</button>
+    <video id="lightboxVideo" controls playsinline></video>
+  </div>
+
   <!-- 平滑滚动（Lenis，加载失败时自动回退到原生滚动） -->
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
   <script src="js/works.js"></script>

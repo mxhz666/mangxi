@@ -19,7 +19,7 @@
         ? `<video muted loop playsinline autoplay preload="auto"><source src="${w.src}" type="video/mp4" /></video>`
         : `<img src="${w.src}" alt="${w.title}" loading="lazy" />`;
       return `
-      <article class="work" data-category="${w.cat}" data-reveal="up" data-i="${i}">
+      <article class="work" data-category="${w.cat}" data-src="${w.src}" data-reveal="up" data-i="${i}">
         <div class="work-media" data-i="${i}">
           ${media}
           <span class="work-watch">观看 ↗</span>
@@ -271,5 +271,31 @@
       const statsWrap = document.querySelector('.stats');
       if (statsWrap) statsObs.observe(statsWrap);
     }
+  }
+
+  /* ---------- 视频灯箱：点击作品弹出大屏播放 ---------- */
+  const lightbox = document.getElementById('lightbox');
+  const lightboxVideo = document.getElementById('lightboxVideo');
+  const lightboxClose = document.getElementById('lightboxClose');
+  function closeLightbox() {
+    if (!lightbox) return;
+    lightbox.hidden = true;
+    lightboxVideo.pause();
+    lightboxVideo.removeAttribute('src');
+    lightboxVideo.load();
+  }
+  if (lightbox) {
+    worksGrid.addEventListener('click', (e) => {
+      const card = e.target.closest('.work');
+      if (!card) return;
+      const src = card.dataset.src;
+      if (!src) return;
+      lightboxVideo.src = src;
+      lightbox.hidden = false;
+      lightboxVideo.play().catch(() => {});
+    });
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !lightbox.hidden) closeLightbox(); });
   }
 })();
