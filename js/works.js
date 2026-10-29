@@ -3,5 +3,6 @@ const WORKS = [
   { "title": "北欧风品牌服饰tvc", "cat": "apparel", "src": "assets/apparel/成片.mp4", "meta": "", "cover": "assets/apparel/图片节点 53.png", "ratio": "3/4" },
   { "title": "钢笔创意短片", "cat": "ecommerce", "src": "assets/ecommerce/钢笔创意短片.mp4", "meta": "", "cover": "assets/ecommerce/钢笔创意短片.png", "ratio": "3/4" },
   { "title": "美式运动风网球鞋", "cat": "american", "src": "assets/american/美式运动风网球鞋.mp4", "meta": "", "cover": "assets/american/美式运动风网球鞋.png", "ratio": "3/4" },
-  { "title": "美式复古男士包包", "cat": "american", "src": "assets/american/美式复古男士包包.mp4", "meta": "", "cover": "assets/american/美式复古男士包包.png", "ratio": "3/4" }
+  { "title": "美式复古男士包包", "cat": "american", "src": "assets/american/美式复古男士包包.mp4", "meta": "", "cover": "assets/american/美式复古男士包包.png", "ratio": "3/4" },
+  { "title": "创意运动鞋短片", "cat": "ecommerce", "src": "assets/ecommerce/创意运动鞋短片.mp4", "meta": "", "cover": "assets/ecommerce/创意运动鞋短片.png", "ratio": "3/4" }
 ];
