@@ -16,11 +16,11 @@
     const isVideo = (src) => /\.(mp4|webm|mov|m4v)$/i.test(src);
     grid.innerHTML = WORKS.map((w, i) => {
       const media = isVideo(w.src)
-        ? `<video muted loop playsinline preload="metadata"><source src="${w.src}" type="video/mp4" /></video>`
+        ? `<video muted loop playsinline autoplay preload="auto"><source src="${w.src}" type="video/mp4" /></video>`
         : `<img src="${w.src}" alt="${w.title}" loading="lazy" />`;
       return `
       <article class="work" data-category="${w.cat}" data-reveal="up" data-i="${i}">
-        <div class="work-media" data-reveal="clip" data-i="${i}">
+        <div class="work-media" data-i="${i}">
           ${media}
           <span class="work-watch">观看 ↗</span>
         </div>
