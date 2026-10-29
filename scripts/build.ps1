@@ -24,7 +24,15 @@ if (Test-Path $jsonPath) {
     if ($null -ne $tmp) { $works = @($tmp) }
   }
 }
-$works = @($works | Where-Object { $_ -and $_.src -and ([string]$_.src).Trim() -ne '' })
+$works = @($works | Where-Object {
+  if (-not ($_ -and $_.src -and ([string]$_.src).Trim() -ne '')) { return $false }
+  $src = [string]$_.src
+  if ($src -match '^assets/') {
+    $fp = Join-Path $root ($src -replace '/', '\')
+    if (-not (Test-Path $fp)) { return $false }   # drop entries whose file was moved/deleted
+  }
+  return $true
+})
 
 # 2) category lookup: folder name -> category key
 $catLookup = @{}
