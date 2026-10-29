@@ -47,7 +47,19 @@ if errorlevel 1 (
 "%GIT%" push
 if errorlevel 1 (
   echo.
-  echo Push failed. See messages above (network / login / repo).
+  echo Push failed (attempt 1). Retrying in 5 seconds ...
+  timeout /t 5 /nobreak >nul
+  "%GIT%" push
+)
+if errorlevel 1 (
+  echo.
+  echo ============================================
+  echo   PUSH FAILED
+  echo ============================================
+  echo Please read the lines above (network / login / repo).
+  echo If it says "unable to access" or "timed out", it is a network problem.
+  echo Your works are saved locally anyway; just run this again later.
+  echo ============================================
 ) else (
   echo.
   echo Publish OK! Wait 1-2 minutes, then open your website URL.
