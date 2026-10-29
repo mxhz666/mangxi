@@ -6,5 +6,6 @@
   { "title": "创意运动鞋短片", "cat": "apparel", "src": "assets/ecommerce/创意运动鞋短片.mp4", "meta": "", "cover": "assets/ecommerce/创意运动鞋短片.png", "ratio": "3/4" },
   { "title": "美式通勤风服装", "cat": "apparel", "src": "assets/american/美式通勤风服装.mp4", "meta": "", "cover": "assets/american/美式通勤风服装.png", "ratio": "3/4" },
   { "title": "小清新日系耳机", "cat": "tech", "src": "assets/apparel/小清新日系耳机.mp4", "meta": "", "cover": "assets/apparel/小清新日系耳机.png", "ratio": "3/4" },
-  { "title": "新中式奶茶", "cat": "food", "src": "assets/food/新中式奶茶.mp4", "meta": "", "cover": "assets/food/新中式奶茶.png", "ratio": "3/2" }
+  { "title": "新中式奶茶", "cat": "food", "src": "assets/food/新中式奶茶.mp4", "meta": "", "cover": "assets/food/新中式奶茶.png", "ratio": "3/2" },
+  { "title": "创意兔粮短片", "cat": "food", "src": "assets/food/创意兔粮短片.mp4", "meta": "", "cover": "assets/food/创意兔粮短片.png", "ratio": "3/4" }
 ]
