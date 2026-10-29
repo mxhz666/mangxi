@@ -475,7 +475,7 @@ img, video { display: block; max-width: 100%; }
   grid-template-columns: repeat(2, 1fr);
   gap: 2.4rem;
 }
-.work { transition: transform 0.4s var(--ease); }
+.work { display: block; transition: transform 0.4s var(--ease); }
 .work:hover { transform: translateY(-6px); }
 .work-media {
   position: relative;

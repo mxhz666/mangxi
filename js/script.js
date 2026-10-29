@@ -19,7 +19,7 @@
         ? `<video muted loop playsinline autoplay preload="auto"><source src="${w.src}" type="video/mp4" /></video>`
         : `<img src="${w.src}" alt="${w.title}" loading="lazy" />`;
       return `
-      <article class="work" data-category="${w.cat}" data-src="${w.src}" data-reveal="up" data-i="${i}">
+      <a class="work" href="${w.src}" target="_blank" rel="noopener" data-category="${w.cat}" data-src="${w.src}" data-reveal="up" data-i="${i}">
         <div class="work-media" data-i="${i}">
           ${media}
           <span class="work-watch">观看 ↗</span>
@@ -28,7 +28,7 @@
           <h3 class="work-title">${w.title}</h3>
           <p class="work-meta">${w.meta}</p>
         </div>
-      </article>
+      </a>
     `;
     }).join('');
   }
@@ -288,8 +288,9 @@
     worksGrid.addEventListener('click', (e) => {
       const card = e.target.closest('.work');
       if (!card) return;
-      const src = card.dataset.src;
+      const src = card.dataset.src || card.getAttribute('href');
       if (!src) return;
+      e.preventDefault();
       lightboxVideo.src = src;
       lightbox.hidden = false;
       lightboxVideo.play().catch(() => {});
