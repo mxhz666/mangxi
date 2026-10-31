@@ -295,6 +295,8 @@
       const src = card.dataset.src || card.getAttribute('href');
       if (!src) return;
       e.preventDefault();
+      const coverImg = card.querySelector('.work-cover');
+      lightboxVideo.poster = coverImg ? coverImg.src : '';
       lightboxVideo.src = src;
       lightbox.hidden = false;
       lightboxVideo.play().catch(() => {});
