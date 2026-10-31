@@ -18,5 +18,7 @@
   { "title": "超现实彩虹糖", "cat": "food", "src": "assets/food/超现实彩虹糖.mp4", "meta": "", "cover": "assets/food/超现实彩虹糖_frame.jpg", "ratio": "3/4" },
   { "title": "海上度假风沐浴露", "cat": "beauty", "src": "assets/beauty/海上度假风沐浴露.mp4", "meta": "", "cover": "assets/beauty/海上度假风沐浴露_frame.jpg", "ratio": "3/4" },
   { "title": "泰式幽默风卫生巾", "cat": "beauty", "src": "assets/beauty/泰式幽默风卫生巾.mp4", "meta": "", "cover": "assets/beauty/泰式幽默风卫生巾_frame.jpg", "ratio": "3/4" },
-  { "title": "韩系电影风枕头", "cat": "beauty", "src": "assets/beauty/韩系电影风枕头.mp4", "meta": "", "cover": "assets/beauty/韩系电影风枕头_frame.jpg", "ratio": "3/4" }
+  { "title": "韩系电影风枕头", "cat": "beauty", "src": "assets/beauty/韩系电影风枕头.mp4", "meta": "", "cover": "assets/beauty/韩系电影风枕头_frame.jpg", "ratio": "3/4" },
+  { "title": "法式氛围感香水", "cat": "beauty", "src": "assets/beauty/法式氛围感香水.mp4", "meta": "", "cover": "assets/beauty/法式氛围感香水_frame.jpg", "ratio": "3/4" },
+  { "title": "新中式国风口红", "cat": "chinese", "src": "assets/chinese/新中式国风口红.mp4", "meta": "", "cover": "assets/chinese/新中式国风口红_frame.jpg", "ratio": "3/4" }
 ]
