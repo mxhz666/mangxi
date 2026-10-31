@@ -87,35 +87,20 @@ if (Test-Path $assets) {
 # 3.5) auto-generate covers (first frame) for every entry whose video exists
 $rebuilt = @()
 foreach ($w in $works) {
-  $cover = [string]$w.cover
   $ratio = [string]$w.ratio
-  # prefer a compressed .jpg variant of the same cover if it exists (smaller = faster mobile load)
-  if ($cover) {
-    $jpgVariant = [System.IO.Path]::ChangeExtension($cover, '.jpg')
-    if (Test-Path (Join-Path $root ($jpgVariant -replace '/', '\'))) { $cover = $jpgVariant }
-  }
+  $cover = ''
   $fullPath = $null
   if ($w.src -match '^assets/') { $fullPath = Join-Path $root ($w.src -replace '/', '\') }
   if ($fullPath -and (Test-Path $fullPath)) {
-    # prefer a user-provided same-named image as the cover
-    if (-not $cover) {
-      $dirFull = [System.IO.Path]::GetDirectoryName($fullPath)
-      $baseName = [System.IO.Path]::GetFileNameWithoutExtension($fullPath)
-      foreach ($ce in @('.jpg','.jpeg','.png','.webp')) {
-        if (Test-Path (Join-Path $dirFull ($baseName + $ce))) {
-          $cover = ($w.src -replace '\.[^.]+$', $ce)
-          break
-        }
-      }
-    }
-    # else auto-generate the first frame with ffmpeg
-    if (-not $cover -and $ffmpeg) {
+    # cover = the video's FIRST FRAME (auto-extracted)
+    if ($ffmpeg) {
       try {
-        $coverFile = [System.IO.Path]::ChangeExtension($fullPath, '.jpg')
+        $baseName = [System.IO.Path]::GetFileNameWithoutExtension($fullPath)
+        $coverFile = Join-Path ([System.IO.Path]::GetDirectoryName($fullPath)) ($baseName + '_frame.jpg')
         if (-not (Test-Path $coverFile)) {
-          & $ffmpeg -y -ss 1 -i $fullPath -frames:v 1 -q:v 3 -loglevel quiet $coverFile 2>$null
+          & $ffmpeg -y -ss 0 -i $fullPath -frames:v 1 -q:v 3 -loglevel quiet $coverFile 2>$null
         }
-        if (Test-Path $coverFile) { $cover = ($w.src -replace '\.[^.]+$', '.jpg') }
+        if (Test-Path $coverFile) { $cover = ($w.src -replace '\.[^.]+$', '_frame.jpg') }
       } catch { }
     }
     if (-not $ratio -and $ffmpeg) {
