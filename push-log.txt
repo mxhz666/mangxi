@@ -1,2 +1,1 @@
-To https://github.com/mxhz666/mangxi.git
-   9864d22..fee5b44  main -> main
+Everything up-to-date
