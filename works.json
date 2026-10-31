@@ -11,5 +11,7 @@
   { "title": "草原风耳饰", "cat": "jewelry", "src": "assets/jewelry/草原风耳饰.mp4", "meta": "", "cover": "assets/jewelry/草原风耳饰_frame.jpg", "ratio": "3/4" },
   { "title": "鱼眼创意换装", "cat": "ecommerce", "src": "assets/ecommerce/鱼眼创意换装.mp4", "meta": "", "cover": "assets/ecommerce/鱼眼创意换装_frame.jpg", "ratio": "3/4" },
   { "title": "氛围感秋冬外套", "cat": "apparel", "src": "assets/apparel/氛围感秋冬外套.mp4", "meta": "", "cover": "assets/apparel/氛围感秋冬外套_frame.jpg", "ratio": "3/4" },
-  { "title": "陶阿狗色卡复刻", "cat": "ecommerce", "src": "assets/ecommerce/陶阿狗色卡复刻.mp4", "meta": "", "cover": "assets/ecommerce/陶阿狗色卡复刻_frame.jpg", "ratio": "3/4" }
+  { "title": "陶阿狗色卡复刻", "cat": "ecommerce", "src": "assets/ecommerce/陶阿狗色卡复刻.mp4", "meta": "", "cover": "assets/ecommerce/陶阿狗色卡复刻_frame.jpg", "ratio": "3/4" },
+  { "title": "航海品牌服饰", "cat": "apparel", "src": "assets/apparel/航海品牌服饰.mp4", "meta": "", "cover": "assets/apparel/航海品牌服饰_frame.jpg", "ratio": "3/4" },
+  { "title": "街拍潮流包包", "cat": "apparel", "src": "assets/apparel/街拍潮流包包.mp4", "meta": "", "cover": "assets/apparel/街拍潮流包包_frame.jpg", "ratio": "3/4" }
 ]
