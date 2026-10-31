@@ -88,15 +88,27 @@ if (Test-Path $assets) {
 $rebuilt = @()
 foreach ($w in $works) {
   $ratio = [string]$w.ratio
-  $cover = ''
+  $cover = [string]$w.cover
   $fullPath = $null
   if ($w.src -match '^assets/') { $fullPath = Join-Path $root ($w.src -replace '/', '\') }
   if ($fullPath -and (Test-Path $fullPath)) {
-    # cover = the video's FIRST FRAME (auto-extracted)
-    if ($ffmpeg) {
+    # keep the stored (compressed) cover image if it exists on disk
+    if ($cover -and -not (Test-Path (Join-Path $root ($cover -replace '/', '\')))) { $cover = '' }
+    # else: a same-named image next to the video
+    if (-not $cover) {
+      $dirFull = [System.IO.Path]::GetDirectoryName($fullPath)
+      $baseName = [System.IO.Path]::GetFileNameWithoutExtension($fullPath)
+      foreach ($ce in @('.jpg','.jpeg','.png','.webp')) {
+        if (Test-Path (Join-Path $dirFull ($baseName + $ce))) {
+          $cover = ($w.src -replace '\.[^.]+$', $ce)
+          break
+        }
+      }
+    }
+    # else: extract the video's first frame
+    if (-not $cover -and $ffmpeg) {
       try {
-        $baseName = [System.IO.Path]::GetFileNameWithoutExtension($fullPath)
-        $coverFile = Join-Path ([System.IO.Path]::GetDirectoryName($fullPath)) ($baseName + '_frame.jpg')
+        $coverFile = [System.IO.Path]::ChangeExtension($fullPath, '_frame.jpg')
         if (-not (Test-Path $coverFile)) {
           & $ffmpeg -y -ss 0 -i $fullPath -vf "scale=480:-2" -frames:v 1 -q:v 4 -loglevel quiet $coverFile 2>$null
         }
@@ -152,20 +164,9 @@ foreach ($w in $works) {
   $sv = Esc ($w.src + '?v=' + $ver)
   $m = Esc $w.meta
   $cv = Esc $w.cover
-  $cvData = $cv
-  if ($w.cover -and ($w.cover -notlike 'data:*')) {
-    $relCover = $w.cover -replace '/', '\'
-    $fullCover = Join-Path $root $relCover
-    if (Test-Path $fullCover) {
-      try {
-        $b64 = [Convert]::ToBase64String([System.IO.File]::ReadAllBytes($fullCover))
-        $cvData = 'data:image/jpeg;base64,' + $b64
-      } catch { }
-    }
-  }
   $rt = Esc $w.ratio
   $jsonItems += "  { `"title`": `"$t`", `"cat`": `"$c`", `"src`": `"$s`", `"meta`": `"$m`", `"cover`": `"$cv`", `"ratio`": `"$rt`" }"
-  $jsItems   += "  { `"title`": `"$t`", `"cat`": `"$c`", `"src`": `"$sv`", `"meta`": `"$m`", `"cover`": `"$cvData`", `"ratio`": `"$rt`" }"
+  $jsItems   += "  { `"title`": `"$t`", `"cat`": `"$c`", `"src`": `"$sv`", `"meta`": `"$m`", `"cover`": `"$cv`", `"ratio`": `"$rt`" }"
 }
 
 $jsonContent = "[" + "`r`n" + ($jsonItems -join ",`r`n") + "`r`n]" + "`r`n"
