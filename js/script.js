@@ -17,9 +17,9 @@
     grid.innerHTML = WORKS.map((w, i) => {
       const media = isVideo(w.src)
         ? (w.cover
-            ? `<img class="work-cover" src="${w.cover}" alt="${w.title}" loading="lazy" /><video class="work-video" muted loop playsinline preload="none"><source src="${w.src}" type="video/mp4" /></video>`
+            ? `<img class="work-cover" src="${w.cover}" alt="${w.title}" /><video class="work-video" muted loop playsinline preload="none"><source src="${w.src}" type="video/mp4" /></video>`
             : `<video class="work-video" muted loop playsinline autoplay preload="auto"><source src="${w.src}" type="video/mp4" /></video>`)
-        : `<img src="${w.src}" alt="${w.title}" loading="lazy" />`;
+        : `<img src="${w.src}" alt="${w.title}" />`;
       const rp = (w.ratio || '').split('/');
       const wide = rp.length === 2 && (+rp[0]) > (+rp[1]);
       return `

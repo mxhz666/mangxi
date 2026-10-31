@@ -514,15 +514,13 @@ img, video { display: block; max-width: 100%; }
 }
 .work-media video,
 .work-media img {
-  position: absolute;
-  inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
   transform: scale(1);
   transition: transform 0.6s var(--ease), opacity 0.4s var(--ease);
 }
-.work-media .work-cover { z-index: 1; }
-.work-media .work-video { z-index: 2; opacity: 0; }
+.work-media .work-cover { display: block; }
+.work-media .work-video { position: absolute; inset: 0; z-index: 2; opacity: 0; }
 .work:hover .work-media .work-video { opacity: 1; transform: scale(1.05); }
 .work:hover .work-media .work-cover { transform: scale(1.05); }
 .work-watch {
