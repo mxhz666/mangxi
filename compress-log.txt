@@ -1,0 +1,40 @@
+=== compress log ===
+FFMPEG=C:\Program Files\Red Giant\Trapcode Suite\Tools\ffmpeg.exe
+
+INPUT=assets\apparel\Í¼Æ¬½Úµã 53.png
+[image2 @ 023ec8e0] Could find no file with path 'assets\apparel\å›¾ç‰‡èŠ‚ç‚¹ 53.png' and index in the range 0-4
+assets\apparel\å›¾ç‰‡èŠ‚ç‚¹ 53.png: No such file or directory
+ERROR F:\ds1\portfolio\assets\apparel\Í¼Æ¬½Úµã 53.jpg
+INPUT=assets\apparel\Ğ¡ÇåĞÂÈÕÏµ¶ú»ú.png
+[image2 @ 02bfc900] Could find no file with path 'assets\apparel\å°æ¸…æ–°æ—¥ç³»è€³æœº.png' and index in the range 0-4
+assets\apparel\å°æ¸…æ–°æ—¥ç³»è€³æœº.png: No such file or directory
+ERROR F:\ds1\portfolio\assets\apparel\Ğ¡ÇåĞÂÈÕÏµ¶ú»ú.jpg
+INPUT=assets\food\´´ÒâÍÃÁ¸¶ÌÆ¬.png
+[image2 @ 02ccc8e0] Could find no file with path 'assets\food\åˆ›æ„å…”ç²®çŸ­ç‰‡.png' and index in the range 0-4
+assets\food\åˆ›æ„å…”ç²®çŸ­ç‰‡.png: No such file or directory
+ERROR F:\ds1\portfolio\assets\food\´´ÒâÍÃÁ¸¶ÌÆ¬.jpg
+INPUT=assets\food\ĞÂÖĞÊ½ÄÌ²è.png
+[image2 @ 0242c8e0] Could find no file with path 'assets\food\æ–°ä¸­å¼å¥¶èŒ¶.png' and index in the range 0-4
+assets\food\æ–°ä¸­å¼å¥¶èŒ¶.png: No such file or directory
+ERROR F:\ds1\portfolio\assets\food\ĞÂÖĞÊ½ÄÌ²è.jpg
+INPUT=assets\ecommerce\´´ÒâÔË¶¯Ğ¬¶ÌÆ¬.png
+[image2 @ 02e8c900] Could find no file with path 'assets\ecommerce\åˆ›æ„è¿åŠ¨é‹çŸ­ç‰‡.png' and index in the range 0-4
+assets\ecommerce\åˆ›æ„è¿åŠ¨é‹çŸ­ç‰‡.png: No such file or directory
+ERROR F:\ds1\portfolio\assets\ecommerce\´´ÒâÔË¶¯Ğ¬¶ÌÆ¬.jpg
+INPUT=assets\ecommerce\¸Ö±Ê´´Òâ¶ÌÆ¬.png
+[image2 @ 02c7c900] Could find no file with path 'assets\ecommerce\é’¢ç¬”åˆ›æ„çŸ­ç‰‡.png' and index in the range 0-4
+assets\ecommerce\é’¢ç¬”åˆ›æ„çŸ­ç‰‡.png: No such file or directory
+ERROR F:\ds1\portfolio\assets\ecommerce\¸Ö±Ê´´Òâ¶ÌÆ¬.jpg
+INPUT=assets\american\ÃÀÊ½¸´¹ÅÄĞÊ¿°ü°ü.png
+[image2 @ 001fc900] Could find no file with path 'assets\american\ç¾å¼å¤å¤ç”·å£«åŒ…åŒ….png' and index in the range 0-4
+assets\american\ç¾å¼å¤å¤ç”·å£«åŒ…åŒ….png: No such file or directory
+ERROR F:\ds1\portfolio\assets\american\ÃÀÊ½¸´¹ÅÄĞÊ¿°ü°ü.jpg
+INPUT=assets\american\ÃÀÊ½ÔË¶¯·çÍøÇòĞ¬.png
+[image2 @ 0245c900] Could find no file with path 'assets\american\ç¾å¼è¿åŠ¨é£ç½‘çƒé‹.png' and index in the range 0-4
+assets\american\ç¾å¼è¿åŠ¨é£ç½‘çƒé‹.png: No such file or directory
+ERROR F:\ds1\portfolio\assets\american\ÃÀÊ½ÔË¶¯·çÍøÇòĞ¬.jpg
+INPUT=assets\american\ÃÀÊ½Í¨ÇÚ·ç·ş×°.png
+[image2 @ 02cec900] Could find no file with path 'assets\american\ç¾å¼é€šå‹¤é£æœè£….png' and index in the range 0-4
+assets\american\ç¾å¼é€šå‹¤é£æœè£….png: No such file or directory
+ERROR F:\ds1\portfolio\assets\american\ÃÀÊ½Í¨ÇÚ·ç·ş×°.jpg
+DONE
