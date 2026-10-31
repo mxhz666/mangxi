@@ -152,10 +152,9 @@ foreach ($w in $works) {
   $sv = Esc ($w.src + '?v=' + $ver)
   $m = Esc $w.meta
   $cv = Esc $w.cover
-  $cvv = Esc ($w.cover + '?v=' + $ver)
   $rt = Esc $w.ratio
   $jsonItems += "  { `"title`": `"$t`", `"cat`": `"$c`", `"src`": `"$s`", `"meta`": `"$m`", `"cover`": `"$cv`", `"ratio`": `"$rt`" }"
-  $jsItems   += "  { `"title`": `"$t`", `"cat`": `"$c`", `"src`": `"$sv`", `"meta`": `"$m`", `"cover`": `"$cvv`", `"ratio`": `"$rt`" }"
+  $jsItems   += "  { `"title`": `"$t`", `"cat`": `"$c`", `"src`": `"$sv`", `"meta`": `"$m`", `"cover`": `"$cv`", `"ratio`": `"$rt`" }"
 }
 
 $jsonContent = "[" + "`r`n" + ($jsonItems -join ",`r`n") + "`r`n]" + "`r`n"
