@@ -2,6 +2,7 @@
 setlocal
 cd /d "%~dp0"
 set "LOG=%~dp0compress-log.txt"
+set "TMP=%~dp0_tmp_cover"
 > "%LOG%" echo === compress log ===
 
 set "FF="
@@ -23,12 +24,15 @@ for %%d in (apparel jewelry tech beauty food ecommerce american brand chinese) d
     for %%f in ("assets\%%d\*.png") do (
       if exist "%%f" (
         >> "%LOG%" echo INPUT=%%f
-        "%FF%" -y -i "%%f" -vf "scale=1080:-2" -q:v 4 "%%~dpnf.jpg" -loglevel error >> "%LOG%" 2>&1
+        copy /y "%%f" "%TMP%.png" >nul
+        "%FF%" -y -i "%TMP%.png" -vf "scale=1080:-2" -q:v 4 "%TMP%.jpg" -loglevel error >> "%LOG%" 2>&1
         if errorlevel 1 (
-          >> "%LOG%" echo ERROR %%~dpnf.jpg
+          >> "%LOG%" echo ERROR %%f
         ) else (
+          copy /y "%TMP%.jpg" "%%~dpnf.jpg" >nul
           >> "%LOG%" echo OK %%~dpnf.jpg
         )
+        del "%TMP%.png" "%TMP%.jpg" >nul 2>nul
       )
     )
   )
@@ -36,7 +40,7 @@ for %%d in (apparel jewelry tech beauty food ecommerce american brand chinese) d
 >> "%LOG%" echo DONE
 
 echo.
-echo Finished. Log saved to compress-log.txt
-echo Run publish.bat afterwards.
+echo Finished. Log: compress-log.txt
+echo Now double-click publish.bat
 echo.
 pause
