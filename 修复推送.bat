@@ -16,31 +16,29 @@ if not defined GIT (
 )
 
 echo.
-echo [1/2] Pointing git at Clash for Windows (127.0.0.1:7890) ...
+echo [1/2] Pointing git at Clash 127.0.0.1:7890 ...
 "%GIT%" config --global http.proxy http://127.0.0.1:7890
 "%GIT%" config --global https.proxy http://127.0.0.1:7890
 "%GIT%" config --global http.version HTTP/1.1
 "%GIT%" config --global http.postBuffer 524288000
-echo    done. (Make sure Clash is running!)
+echo    done.
 echo.
-echo [2/2] Pushing (retry up to 4 times) ...
+echo [2/2] Pushing (retry up to 5) ...
 set /a tries=0
 :retry
 set /a tries+=1
 echo    attempt %tries% ...
 "%GIT%" push > "%~dp0push-log.txt" 2>&1
 if not errorlevel 1 goto success
-if %tries% lss 4 (
-  timeout /t 6 /nobreak >nul
+if %tries% lss 5 (
+  timeout /t 5 /nobreak >nul
   goto retry
 )
 echo.
 echo ============================================
-echo   PUSH FAILED after 4 attempts
+echo   PUSH FAILED after 5 attempts
 echo ============================================
 echo See push-log.txt
-echo Check: Clash is running, port 7890 works,
-echo and github.com opens in your browser.
 echo ============================================
 pause
 exit /b 1
@@ -50,6 +48,4 @@ echo.
 echo ============================================
 echo   Publish OK!  (pushed successfully)
 echo ============================================
-echo Log: %~dp0push-log.txt
-echo.
 pause
