@@ -13,5 +13,7 @@
   { "title": "氛围感秋冬外套", "cat": "apparel", "src": "assets/apparel/氛围感秋冬外套.mp4", "meta": "", "cover": "assets/apparel/氛围感秋冬外套_frame.jpg", "ratio": "3/4" },
   { "title": "陶阿狗色卡复刻", "cat": "ecommerce", "src": "assets/ecommerce/陶阿狗色卡复刻.mp4", "meta": "", "cover": "assets/ecommerce/陶阿狗色卡复刻_frame.jpg", "ratio": "3/4" },
   { "title": "航海品牌服饰", "cat": "apparel", "src": "assets/apparel/航海品牌服饰.mp4", "meta": "", "cover": "assets/apparel/航海品牌服饰_frame.jpg", "ratio": "3/4" },
-  { "title": "街拍潮流包包", "cat": "apparel", "src": "assets/apparel/街拍潮流包包.mp4", "meta": "", "cover": "assets/apparel/街拍潮流包包_frame.jpg", "ratio": "3/4" }
+  { "title": "街拍潮流包包", "cat": "apparel", "src": "assets/apparel/街拍潮流包包.mp4", "meta": "", "cover": "assets/apparel/街拍潮流包包_frame.jpg", "ratio": "3/4" },
+  { "title": "插画风品牌香薰", "cat": "beauty", "src": "assets/beauty/插画风品牌香薰.mp4", "meta": "", "cover": "assets/beauty/插画风品牌香薰_frame.jpg", "ratio": "3/4" },
+  { "title": "超现实彩虹糖", "cat": "food", "src": "assets/food/超现实彩虹糖.mp4", "meta": "", "cover": "assets/food/超现实彩虹糖_frame.jpg", "ratio": "3/4" }
 ]
