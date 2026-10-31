@@ -519,10 +519,8 @@ img, video { display: block; max-width: 100%; }
   transform: scale(1);
   transition: transform 0.6s var(--ease), opacity 0.4s var(--ease);
 }
-.work-media .work-cover { display: block; }
-.work-media .work-video { position: absolute; inset: 0; z-index: 2; opacity: 0; }
-.work:hover .work-media .work-video { opacity: 1; transform: scale(1.05); }
-.work:hover .work-media .work-cover { transform: scale(1.05); }
+.work-media .work-video { position: absolute; inset: 0; z-index: 2; opacity: 1; }
+.work:hover .work-media .work-video { transform: scale(1.05); }
 .work-watch {
   position: absolute;
   right: 1rem; bottom: 1rem;

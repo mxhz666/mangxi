@@ -98,7 +98,7 @@ foreach ($w in $works) {
         $baseName = [System.IO.Path]::GetFileNameWithoutExtension($fullPath)
         $coverFile = Join-Path ([System.IO.Path]::GetDirectoryName($fullPath)) ($baseName + '_frame.jpg')
         if (-not (Test-Path $coverFile)) {
-          & $ffmpeg -y -ss 0 -i $fullPath -frames:v 1 -q:v 3 -loglevel quiet $coverFile 2>$null
+          & $ffmpeg -y -ss 0 -i $fullPath -vf "scale=480:-2" -frames:v 1 -q:v 4 -loglevel quiet $coverFile 2>$null
         }
         if (Test-Path $coverFile) { $cover = ($w.src -replace '\.[^.]+$', '_frame.jpg') }
       } catch { }
@@ -152,9 +152,20 @@ foreach ($w in $works) {
   $sv = Esc ($w.src + '?v=' + $ver)
   $m = Esc $w.meta
   $cv = Esc $w.cover
+  $cvData = $cv
+  if ($w.cover -and ($w.cover -notlike 'data:*')) {
+    $relCover = $w.cover -replace '/', '\'
+    $fullCover = Join-Path $root $relCover
+    if (Test-Path $fullCover) {
+      try {
+        $b64 = [Convert]::ToBase64String([System.IO.File]::ReadAllBytes($fullCover))
+        $cvData = 'data:image/jpeg;base64,' + $b64
+      } catch { }
+    }
+  }
   $rt = Esc $w.ratio
   $jsonItems += "  { `"title`": `"$t`", `"cat`": `"$c`", `"src`": `"$s`", `"meta`": `"$m`", `"cover`": `"$cv`", `"ratio`": `"$rt`" }"
-  $jsItems   += "  { `"title`": `"$t`", `"cat`": `"$c`", `"src`": `"$sv`", `"meta`": `"$m`", `"cover`": `"$cv`", `"ratio`": `"$rt`" }"
+  $jsItems   += "  { `"title`": `"$t`", `"cat`": `"$c`", `"src`": `"$sv`", `"meta`": `"$m`", `"cover`": `"$cvData`", `"ratio`": `"$rt`" }"
 }
 
 $jsonContent = "[" + "`r`n" + ($jsonItems -join ",`r`n") + "`r`n]" + "`r`n"
