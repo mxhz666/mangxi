@@ -1,0 +1,40 @@
+=== video compress log ===
+FFMPEG=C:\Program Files\Red Giant\Trapcode Suite\Tools\ffmpeg.exe
+
+INPUT=assets\apparel\小清新日系耳机.mp4
+Unrecognized option 'preset'.
+Error splitting the argument list: Option not found
+ERROR assets\apparel\小清新日系耳机.mp4
+INPUT=assets\apparel\成片.mp4
+Unrecognized option 'preset'.
+Error splitting the argument list: Option not found
+ERROR assets\apparel\成片.mp4
+INPUT=assets\food\创意兔粮短片.mp4
+Unrecognized option 'preset'.
+Error splitting the argument list: Option not found
+ERROR assets\food\创意兔粮短片.mp4
+INPUT=assets\food\新中式奶茶.mp4
+Unrecognized option 'preset'.
+Error splitting the argument list: Option not found
+ERROR assets\food\新中式奶茶.mp4
+INPUT=assets\ecommerce\创意运动鞋短片.mp4
+Unrecognized option 'preset'.
+Error splitting the argument list: Option not found
+ERROR assets\ecommerce\创意运动鞋短片.mp4
+INPUT=assets\ecommerce\钢笔创意短片.mp4
+Unrecognized option 'preset'.
+Error splitting the argument list: Option not found
+ERROR assets\ecommerce\钢笔创意短片.mp4
+INPUT=assets\american\美式复古男士包包.mp4
+Unrecognized option 'preset'.
+Error splitting the argument list: Option not found
+ERROR assets\american\美式复古男士包包.mp4
+INPUT=assets\american\美式运动风网球鞋.mp4
+Unrecognized option 'preset'.
+Error splitting the argument list: Option not found
+ERROR assets\american\美式运动风网球鞋.mp4
+INPUT=assets\american\美式通勤风服装.mp4
+Unrecognized option 'preset'.
+Error splitting the argument list: Option not found
+ERROR assets\american\美式通勤风服装.mp4
+DONE

@@ -1,0 +1,10 @@
+ffmpeg version N-62439-g5e379cd
+built on Apr 14 2014 12:58:51 with gcc 4.8.2 (GCC)
+configuration: --arch=x86 --target-os=mingw32 --cross-prefix=/home/sanjeev/Desktop/ffmpeg-win2.1.4/ffmpeg-2.1.4/sandbox/mingw-w64-i686/bin/i686-w64-mingw32- --pkg-config=pkg-config --enable-avisynth --enable-libmp3lame --enable-version3 --enable-zlib --enable-librtmp --enable-libvorbis --enable-libtheora --enable-libspeex --enable-libopenjpeg --enable-gnutls --enable-libgsm --enable-libfreetype --enable-libopus --disable-w32threads --enable-libvo-aacenc --enable-bzlib --extra-cflags=-DPTW32_STATIC_LIB --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libvo-amrwbenc --enable-libschroedinger --enable-libvpx --enable-libilbc --prefix=/home/sanjeev/Desktop/ffmpeg-win2.1.4/ffmpeg-2.1.4/sandbox/mingw-w64-i686/i686-w64-mingw32 --enable-static --disable-shared --enable-libsoxr --enable-fontconfig --enable-libass --enable-libbluray --enable-iconv --enable-libtwolame --extra-cflags=-DLIBTWOLAME_STATIC --enable-libcaca --enable-libmodplug --extra-libs=-lstdc++ --extra-libs=-lpng --extra-cflags= --extra-cflags= --enable-runtime-cpudetect
+libavutil      52. 76.100 / 52. 76.100
+libavcodec     55. 58.103 / 55. 58.103
+libavformat    55. 37.100 / 55. 37.100
+libavdevice    55. 13.100 / 55. 13.100
+libavfilter     4.  4.100 /  4.  4.100
+libswscale      2.  6.100 /  2.  6.100
+libswresample   0. 18.100 /  0. 18.100
