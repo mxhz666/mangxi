@@ -157,17 +157,19 @@ function Esc([string]$s) {
   return $s.Replace('\', '\\').Replace('"', '\"')
 }
 
+$ver = (Get-Date -Format 'yyyyMMddHHmmss')
 $jsonItems = @()
 $jsItems   = @()
 foreach ($w in $works) {
   $t = Esc $w.title
   $c = Esc $w.cat
   $s = Esc $w.src
+  $sv = Esc ($w.src + '?v=' + $ver)
   $m = Esc $w.meta
   $cv = Esc $w.cover
   $rt = Esc $w.ratio
   $jsonItems += "  { `"title`": `"$t`", `"cat`": `"$c`", `"src`": `"$s`", `"meta`": `"$m`", `"cover`": `"$cv`", `"ratio`": `"$rt`" }"
-  $jsItems   += "  { `"title`": `"$t`", `"cat`": `"$c`", `"src`": `"$s`", `"meta`": `"$m`", `"cover`": `"$cv`", `"ratio`": `"$rt`" }"
+  $jsItems   += "  { `"title`": `"$t`", `"cat`": `"$c`", `"src`": `"$sv`", `"meta`": `"$m`", `"cover`": `"$cv`", `"ratio`": `"$rt`" }"
 }
 
 $jsonContent = "[" + "`r`n" + ($jsonItems -join ",`r`n") + "`r`n]" + "`r`n"
@@ -183,7 +185,6 @@ $utf8 = New-Object System.Text.UTF8Encoding($false)
 $indexPath = Join-Path $root 'index.html'
 if (Test-Path $indexPath) {
   $idx = Get-Content $indexPath -Raw -Encoding UTF8
-  $ver = (Get-Date -Format 'yyyyMMddHHmmss')
   $new = $idx -replace 'js/works\.js(\?v=[0-9]+)?', ('js/works.js?v=' + $ver)
   $new = $new -replace 'js/script\.js(\?v=[0-9]+)?', ('js/script.js?v=' + $ver)
   $new = $new -replace 'css/styles\.css(\?v=[0-9]+)?', ('css/styles.css?v=' + $ver)
