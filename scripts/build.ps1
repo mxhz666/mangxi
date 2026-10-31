@@ -89,6 +89,11 @@ $rebuilt = @()
 foreach ($w in $works) {
   $cover = [string]$w.cover
   $ratio = [string]$w.ratio
+  # prefer a compressed .jpg variant of the same cover if it exists (smaller = faster mobile load)
+  if ($cover) {
+    $jpgVariant = [System.IO.Path]::ChangeExtension($cover, '.jpg')
+    if (Test-Path (Join-Path $root ($jpgVariant -replace '/', '\'))) { $cover = $jpgVariant }
+  }
   $fullPath = $null
   if ($w.src -match '^assets/') { $fullPath = Join-Path $root ($w.src -replace '/', '\') }
   if ($fullPath -and (Test-Path $fullPath)) {
